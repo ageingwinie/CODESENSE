@@ -1,0 +1,69 @@
+instruction,code
+"Return the square of every integer in a list.","def square_numbers(values):
+    '''Return a new list containing each input value squared.'''
+    return [value ** 2 for value in values]
+"
+"Filter a sequence and keep only even numbers.","def even_numbers(values):
+    '''Select integers divisible by two from an iterable.'''
+    return [value for value in values if value % 2 == 0]
+"
+"Calculate the factorial of a non-negative integer using recursion.","def factorial(number):
+    '''Compute factorial recursively and reject negative input.'''
+    if number < 0:
+        raise ValueError('number must be non-negative')
+    if number in (0, 1):
+        return 1
+    return number * factorial(number - 1)
+"
+"Count how many times each word appears in a sentence.","def word_frequency(sentence):
+    '''Build a dictionary mapping lowercase words to occurrence counts.'''
+    counts = {}
+    for word in sentence.lower().split():
+        counts[word] = counts.get(word, 0) + 1
+    return counts
+"
+"Read a UTF-8 text file and return its non-empty lines.","def read_nonempty_lines(path):
+    '''Open a text file safely and strip blank lines.'''
+    with open(path, encoding='utf-8') as handle:
+        return [line.strip() for line in handle if line.strip()]
+"
+"Safely divide two numbers and return a fallback value on division by zero.","def safe_divide(numerator, denominator, fallback=0):
+    '''Divide numbers while handling a zero denominator.'''
+    try:
+        return numerator / denominator
+    except ZeroDivisionError:
+        return fallback
+"
+"Group records by a key function into a dictionary of lists.","def group_by(items, key_function):
+    '''Collect items under the key produced by key_function.'''
+    grouped = {}
+    for item in items:
+        key = key_function(item)
+        grouped.setdefault(key, []).append(item)
+    return grouped
+"
+"Create a class that stores a running total and can add values.","class RunningTotal:
+    '''Maintain an accumulated numeric total.'''
+    def __init__(self):
+        self.total = 0
+
+    def add(self, value):
+        self.total += value
+        return self.total
+"
+"Find the first palindrome in a collection of words.","def first_palindrome(words):
+    '''Return the first word that reads the same backwards, if any.'''
+    for word in words:
+        normalized = word.lower()
+        if normalized == normalized[::-1]:
+            return word
+    return None
+"
+"Fetch several asynchronous results concurrently and return their values.","import asyncio
+
+
+async def fetch_all(coroutines):
+    '''Await a collection of coroutines concurrently.'''
+    results = await asyncio.gather(*coroutines)
+    return list(results)
+"
